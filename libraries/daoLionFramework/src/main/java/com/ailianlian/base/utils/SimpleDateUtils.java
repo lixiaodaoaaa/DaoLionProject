@@ -1,4 +1,4 @@
-package com.vmc.core.utils;
+package com.ailianlian.base.utils;
 /*
     ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━┓ 
        Author   :  lixiaodaoaaa
