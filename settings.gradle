@@ -1,0 +1,8 @@
+include 'app'
+include ':daoLionFramework'
+include ':location_gd'
+include ':location_core'
+
+project(':daoLionFramework').projectDir = new File('libraries/daoLionFramework')
+project(':location_gd').projectDir = new File('libraries/location/location_gd')
+project(':location_core').projectDir = new File('libraries/location/location_core')
