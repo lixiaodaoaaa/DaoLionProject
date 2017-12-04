@@ -15,7 +15,6 @@ package com.ailianlian.base.utils;
 import android.util.Log;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -31,26 +30,26 @@ public class DeleteLogUtils{
     
     private static String TAG = "DeleteLogUtils";
     
-    public static void deleteBeforeSomeDays( String logPath, int beforeDays ){
+    public static void deleteLogFilesByBeforeSomeDays( String logPath, int beforeDays ){
         File logDirectoryFile = new File(logPath);
         if (!logDirectoryFile.exists( )) {
             //文件不存在不用删除
             return;
         }
-        
-        List<String> listSaveLogFileName = getListSaveLogFileName(logPath, beforeDays);
+        long current = System.currentTimeMillis( );
         List<File> allFiles = getListFileByLogPath(logPath);
         for (File file : allFiles) {
-            if (file != null && file.exists( )) {
-                // ini 配置文件要保留不能删除
-                if (!listSaveLogFileName.contains(file.getName( )) && !file.getName( ).endsWith(".ini")) {
-                    file.delete( );
-                    Log.i(TAG, "delete file  " + file.getName( ));
+            Log.i(TAG, "fileName:" + file.getName( ));
+            long betweenDays = (current - file.lastModified( )) / (60 * 1000  * 60 * 24);
+            Log.i(TAG, "betweenDays:" + betweenDays);
+            if (betweenDays > beforeDays && !"config.ini".equals(file.getName( ))) {
+                boolean delete = file.delete( );
+                if (!delete) {
+                    Log.i(TAG, "删除文件失败 此文件的名称为 " + file.getName( ));
                 }
             }
         }
     }
-    
     
     private static List<File> getListFileByLogPath( String logPath ){
         File logDirectoryFile = new File(logPath);
@@ -60,73 +59,4 @@ public class DeleteLogUtils{
             return null;
         }
     }
-    
-    /**
-     * @param saveBeforeDays 保留几天的
-     * @return 得到不需要删除的文件名列表
-     * 举例 输入2 ，就会返回所有两天内的文件名列表
-     */
-    
-    private static List<String> getListSaveLogFileName( String logPath, int saveBeforeDays ){
-        List<String> listLogFileNameByPath = getListLogFileNamesByPath(logPath);
-        List<String> listSaveSomeDateStr = SimpleDateUtils.getTodayToBeforeSomeDayListStr(saveBeforeDays);
-        List<String> listSaveLogFileName = new ArrayList<>( );
-        for (int i = 0; i < listLogFileNameByPath.size( ); i++) {
-            for (int k = 0; k < listSaveSomeDateStr.size( ); k++) {
-                if (listLogFileNameByPath.get(i).contains(listSaveSomeDateStr.get(k))) {
-                    listSaveLogFileName.add(listLogFileNameByPath.get(i));
-                    Log.i(TAG, "保留文件  不需要删除 " + listLogFileNameByPath.get(i));
-                }
-            }
-        }
-        return listSaveLogFileName;
-    }
-    
-    
-    /**
-     * 通过目录得到某个路径下的所有文件名 将这个集合返回出来一个List
-     *
-     * @param path
-     * @return
-     */
-    private static List<String> getListLogFileNamesByPath( String path ){
-        File logDirectoryFile = new File(path);
-        if (logDirectoryFile.exists( )) {
-            return Arrays.asList(logDirectoryFile.list( ));
-        }
-        return null;
-    }
-    
-    
-    /**
-     * 通过一个 fileName集合 返回一个 文件集合【需要文件名称 和文件路径】
-     * 只有文件名称没有路径，那么这个File 会不存在，删除会出错。从文件名
-     * 转化成File 【也可以叫 文件名集合到=》文件集合转化】
-     *
-     * @param parenPath
-     * @param filename
-     * @return
-     */
-    private static List<File> getListFileByListName( String parenPath, List<String> filename ){
-        List<File> listFile = new ArrayList<>( );
-        for (int i = 0; i < filename.size( ); i++) {
-            listFile.add(new File(parenPath, filename.get(i)));
-        }
-        return listFile;
-    }
-    
-    
-    /**
-     * 通过一个 fileName集合 返回一个 文件集合【需要文件名称 和文件路径】
-     * 只有文件名称没有路径，那么这个File 会不存在，删除会出错。从文件名
-     * 转化成File 【也可以叫 文件名集合到=》文件集合转化】
-     *
-     * @param parenPath
-     * @param filename
-     * @return
-     */
-    public static List<File> convertListFileNameToListFile( String parenPath, List<String> filename ){
-        return getListFileByListName(parenPath, filename);
-    }
-    
 }
