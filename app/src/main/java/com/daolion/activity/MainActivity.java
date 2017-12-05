@@ -42,7 +42,8 @@ public class MainActivity extends BaseActivity{
     }
     
     private void deleteDeleteLogTest( ){
-        DeleteLogUtils.deleteBeforeSomeDays(logDirectoryPath, 3);
+        final String logDirectoryPath = File.separator + "sdcard" + File.separator + "VMC";
+        DeleteLogUtils.deleteLogFilesByBeforeSomeDays(logDirectoryPath,7);
     }
     
     private void getHashValue( ){
