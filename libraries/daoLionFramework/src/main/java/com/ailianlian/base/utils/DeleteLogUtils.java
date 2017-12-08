@@ -41,6 +41,7 @@ public class DeleteLogUtils{
         for (File file : allFiles) {
             Log.i(TAG, "fileName:" + file.getName( ));
             long betweenDays = (current - file.lastModified( )) / (60 * 1000  * 60 * 24);
+            
             Log.i(TAG, "betweenDays:" + betweenDays);
             if (betweenDays > beforeDays && !"config.ini".equals(file.getName( ))) {
                 boolean delete = file.delete( );
