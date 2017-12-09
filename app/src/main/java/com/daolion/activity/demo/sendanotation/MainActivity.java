@@ -17,28 +17,42 @@
  *
  */
 
-package com.daolion.activity;
+package com.daolion.activity.demo.sendanotation;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
+import com.daolion.activity.BaseActivity;
 import com.daolion.common.Schema;
 import com.daolion.compro.R;
 
-public class SecondActivity extends BaseActivity{
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.Receiver;
+import org.androidannotations.annotations.ViewById;
+
+@EActivity
+public class MainActivity extends BaseActivity{
+    
+    @ViewById
+    TextView tvFirst;
     
     @Override
     protected void onCreate( Bundle savedInstanceState ){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.acitvity_second);
+        setContentView(R.layout.activity_main);
     }
     
     
-    public void sendBoradCastReceiver( View view ){
-        Intent intent = new Intent( );
-        intent.setAction(Schema.ACTION_CHANG_TEXT);
-        sendBroadcast(intent);
+    @Receiver(actions = Schema.ACTION_CHANG_TEXT)
+    public void onReiverChangeTextAction( ){
+        tvFirst.setText("哈哈哈 我收到了");
+    }
+    
+    public void skipToSecondActivity( View view ){
+        Intent intent = new Intent(this, SecondActivity.class);
+        startActivity(intent);
     }
     
 }

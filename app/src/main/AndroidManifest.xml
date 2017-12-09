@@ -9,7 +9,7 @@
         android:icon="@mipmap/ic_launcher"
         android:supportsRtl="true"
     >
-        <activity android:name="com.daolion.activity.MainActivity_"
+        <activity android:name="com.daolion.activity.demo.sendanotation.MainActivity_"
         >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -18,7 +18,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.daolion.activity.SecondActivity"/>
+        <activity android:name="com.daolion.activity.demo.sendanotation.SecondActivity"/>
 
         <!-- 高德定位 -->
         <meta-data
