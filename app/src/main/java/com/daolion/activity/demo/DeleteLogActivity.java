@@ -17,40 +17,45 @@
  *
  */
 
-package com.daolion.activity;
+package com.daolion.activity.demo;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
 
-import com.daolion.common.Schema;
+import com.ailianlian.base.utils.DeleteLogUtils;
+import com.daolion.activity.BaseActivity;
 import com.daolion.compro.R;
+import com.daolion.uitls.HashCheckUtils;
 
-import org.androidannotations.annotations.EActivity;
-import org.androidannotations.annotations.Receiver;
-import org.androidannotations.annotations.ViewById;
+import java.io.File;
 
-@EActivity
-public class MainActivity extends BaseActivity{
+public class DeleteLogActivity extends BaseActivity{
     
-    @ViewById TextView tvFirst;
+    final String logDirectoryPath = File.separator + "sdcard" + File.separator + "VMC";
+    
     
     @Override
     protected void onCreate( Bundle savedInstanceState ){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getHashValue( );
+        deleteDeleteLogTest( );
     }
     
+    private void deleteDeleteLogTest( ){
+        final String logDirectoryPath = File.separator + "sdcard" + File.separator + "VMC";
+        DeleteLogUtils.deleteLogFilesByBeforeSomeDays(logDirectoryPath, 7);
+    }
     
-    @Receiver(actions = Schema.ACTION_CHANG_TEXT)
-    public void onReiverChangeTextAction( ){
-        tvFirst.setText("哈哈哈 我收到了");
+    private void getHashValue( ){
+        String strHash = HashCheckUtils.getHash1Value(this);
+        Log.i(this.TAG, strHash);
     }
     
     public void skipToSecondActivity( View view ){
-        Intent intent = new Intent(this, SecondActivity.class);
-        startActivity(intent);
+    
     }
+    
     
 }

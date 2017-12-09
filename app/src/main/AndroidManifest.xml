@@ -9,7 +9,7 @@
         android:icon="@mipmap/ic_launcher"
         android:supportsRtl="true"
     >
-        <activity android:name="com.daolion.activity.MainActivity"
+        <activity android:name="com.daolion.activity.MainActivity_"
         >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -17,6 +17,8 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <activity android:name="com.daolion.activity.SecondActivity"/>
 
         <!-- 高德定位 -->
         <meta-data

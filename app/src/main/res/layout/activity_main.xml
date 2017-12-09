@@ -4,18 +4,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_weight="1"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:orientation="vertical"
 >
 
 
     <Button android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:text="重新定位"
             android:onClick="requestGetLocation"
+            android:text="重新定位"
     />
+
+    <Button android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:onClick="skipToSecondActivity"
+            android:text="跳转"
+    />
+
+
+    <TextView
+        android:id="@+id/tv_first"
+        style="@style/fill_width_horizontal"/>
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

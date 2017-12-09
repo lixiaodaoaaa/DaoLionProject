@@ -4,6 +4,7 @@ apply from: 'dependencies/dependencies.gradle'
 buildscript {
     repositories {
         jcenter()
+        mavenCentral()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.2.3'
@@ -16,6 +17,8 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
+        mavenCentral()
+        mavenLocal()
     }
 
     //Maven服务器中的共享库
