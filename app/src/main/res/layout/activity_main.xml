@@ -19,12 +19,13 @@
 
     <Button android:layout_width="match_parent" android:layout_height="wrap_content"
             android:onClick="skipToSecondActivity"
-            android:text="跳转"
+            android:text="模拟Touch"
     />
 
 
     <TextView
         android:id="@+id/tv_first"
+        android:textSize="40sp"
         style="@style/fill_width_horizontal"/>
 
 
