@@ -21,6 +21,5 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile supportDependencies.v4
     compile supportDependencies.supportAnnotation
-    compile project(':location_gd')
     compile httpDependencies.gson
 }
