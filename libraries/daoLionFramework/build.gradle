@@ -1,8 +1,6 @@
 apply plugin: 'com.android.library'
-apply plugin: 'me.tatarka.retrolambda'
 android {
     compileSdkVersion rootProject.BUILD.compileSdkVersion
-    buildToolsVersion rootProject.BUILD.buildToolsVersion
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -14,12 +12,14 @@ android {
         minSdkVersion rootProject.BUILD.minSdkVersion
         targetSdkVersion rootProject.BUILD.targetSdkVersion
     }
+    buildToolsVersion '27.0.3'
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile supportDependencies.v4
-    compile supportDependencies.supportAnnotation
-    compile httpDependencies.gson
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation supportDependencies.v4
+    implementation supportDependencies.appcompat
+    implementation supportDependencies.supportAnnotation
+    implementation httpDependencies.gson
 }

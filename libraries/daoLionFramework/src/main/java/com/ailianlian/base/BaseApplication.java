@@ -9,8 +9,6 @@ package com.ailianlian.base;
 
 import android.app.Application;
 
-import com.want.location.LocationManager;
-import com.want.location.gd.GDLocationClient;
 
 public class BaseApplication extends Application {
 
@@ -18,7 +16,5 @@ public class BaseApplication extends Application {
     public void onCreate() {
         super.onCreate();
         // 初始化位置模块
-        LocationManager.init(new GDLocationClient(this));
-        LocationManager.getInstance().requestLocationUpdate();
     }
 }
