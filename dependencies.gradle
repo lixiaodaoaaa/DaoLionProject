@@ -2,7 +2,7 @@ ext {
     // android build version
     PROJECT_BUILD = [
             compileSdkVersion: 26,
-            buildToolsVersion: '26.0.2',
+            buildToolsVersion: '28.0.3',
             minSdkVersion    : 21,
             targetSdkVersion : 26
     ]

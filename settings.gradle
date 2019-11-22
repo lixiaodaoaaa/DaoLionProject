@@ -1,4 +1,7 @@
 include 'app'
+
 include ':daoLionFramework'
+include ':processAnnotation'
 
 project(':daoLionFramework').projectDir = new File('libraries/daoLionFramework')
+project(':processAnnotation').projectDir = new File('libraries/processAnnotation')
